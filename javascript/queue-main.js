@@ -49,6 +49,26 @@ function addEleQueue(){
     if(rear>=12){
         alert(`Queue Overflow size of queue is 12 curr insertion place is ${rear}`);
     }
+    else if(rear==-1 && front==-1){
+        
+       rear++;
+       front++;
+       let somediv1=document.createElement("div");
+        somediv1.classList.add(".inside");
+        first.innerHTML="";
+        somediv1.innerHTML=front;
+        first.appendChild(somediv1);
+       Tail.innerHTML="";
+       let rearon=document.createElement("div");
+       rearon.classList.add(".inside");
+       rearon.innerHTML=rear;
+       Tail.appendChild(rearon);
+       let value=parseInt(inputval.value);
+       let somediv=document.createElement("div");
+       somediv.classList.add(".inside");
+       somediv.innerHTML=value;
+       queueDivs[rear].appendChild(somediv);
+    }
     else{
        rear++;
        Tail.innerHTML="";
@@ -65,18 +85,26 @@ function addEleQueue(){
 }
 
 function deleteEleQueue(){
-    if(front>rear){
+    if((front==-1 && rear==-1) ||(front==12 && rear==12)){
+        alert("Queue Overflow can't delete");
+    }
+    else if(front>rear){
         alert(`Queue Underflow size of queue is 12 curr deletion place is ${front}`);
     }
-    if(front==rear){
-        alert('Queue underflow no elements to delete.');
-        front=-1;
-        rear=-1;
+    else if(front==rear){
+        queueDivs[front].innerHTML="";
         let somediv=document.createElement("div");
         somediv.classList.add(".inside");
         first.innerHTML="";
         somediv.innerHTML=front;
         first.appendChild(somediv);
+        front=-1;
+        rear=-1;
+        let somediv1=document.createElement("div");
+        somediv1.classList.add(".inside");
+        first.innerHTML="";
+        somediv1.innerHTML=front;
+        first.appendChild(somediv1);
         let rearele1=document.createElement("div");
         rearele1.classList.add(".inside");
         rearele1.innerHTML=-1;
@@ -84,12 +112,14 @@ function deleteEleQueue(){
         Tail.appendChild(rearele1);
     }
     else{
+       
+        queueDivs[front].innerHTML="";
         front++;
         let somediv=document.createElement("div");
         somediv.classList.add(".inside");
         first.innerHTML="";
         somediv.innerHTML=front;
         first.appendChild(somediv);
-        queueDivs[front].innerHTML="";
+        
     }
 }
