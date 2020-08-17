@@ -1,0 +1,41 @@
+
+
+h1{
+  padding: 1vh 1vh;
+  background-color: cadetblue;
+}
+
+.Top{
+  border: 1px solid black;
+  height: 6vh;
+  width: 6vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+  .stack-holder{
+  height:70vh;
+  width:100vw;
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.queue-box{
+  border: 1px solid black;
+  text-align: center;
+  height: 8vh;
+  width: 6vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.inside{
+  height:4vh;
+  width:6vw;
+}
