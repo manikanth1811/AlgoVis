@@ -27,7 +27,7 @@ function createStack(){
     stackContainer.innerHTML="";
     cur=0;  
     let rearele=document.createElement("div");
-    rearele.innerHTML=0;
+    rearele.innerHTML=-1;
     Tail.appendChild(rearele);
     for(let i=0;i<maxSize;i++){
         stackDivs[i]=document.createElement("div");
@@ -46,9 +46,9 @@ function addEleStack(){
         alert(`${someval} must enter a number `);
         return;
     }
-    if(top1>9){
+    if(top1>maxSize-2){
         alert(`stack Overflow size of stack is ${maxSize} curr insertion place is ${top1}`);
-        top1=9;
+        top1=maxSize-1;
     }
     else{
        top1++;
