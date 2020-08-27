@@ -5,6 +5,7 @@ var deleteBtn=document.querySelector(".deleteBtn");
 var addBtn=document.querySelector(".addBtn");
 var resetBtn=document.querySelector(".resetBtn");
 
+var maxSize=10;
 
 addBtn.addEventListener('click',addEleStack);
 deleteBtn.addEventListener('click',deleteEleStack);
@@ -13,6 +14,12 @@ resetBtn.addEventListener('click',createStack);
 var stackDivs=[];
 var top1=-1;
 
+function preprocess(){
+    if (window.matchMedia('(max-device-width: 960px)').matches) {
+        maxSize=7;
+    }
+    createStack();
+}
 
 function createStack(){
     Tail.innerHTML="";
@@ -22,14 +29,14 @@ function createStack(){
     let rearele=document.createElement("div");
     rearele.innerHTML=0;
     Tail.appendChild(rearele);
-    for(let i=0;i<10;i++){
+    for(let i=0;i<maxSize;i++){
         stackDivs[i]=document.createElement("div");
         stackDivs[i].classList.add("queue-box");
         stackContainer.appendChild(stackDivs[i]);
     }
 }
 
-window.onload=createStack();
+window.onload=preprocess();
 
 
 function addEleStack(){
@@ -40,7 +47,7 @@ function addEleStack(){
         return;
     }
     if(top1>9){
-        alert(`stack Overflow size of stack is 12 curr insertion place is ${top1}`);
+        alert(`stack Overflow size of stack is ${maxSize} curr insertion place is ${top1}`);
         top1=9;
     }
     else{
@@ -60,7 +67,7 @@ function addEleStack(){
 
 function deleteEleStack(){
     if(top1<0){
-        alert(`Queue Underflow size of queue is 12 curr deletion place is ${top1}`);
+        alert(`Queue Underflow size of queue is ${maxSize} curr deletion place is ${top1}`);
         top1=-1;
     }
     else{

@@ -3,8 +3,6 @@ h1{
   background-color: cadetblue;
 }
 
-
-
 .First{
   border: 1px solid black;
   height: 6vh;
@@ -24,7 +22,7 @@ h1{
 }
   
   .queue-holder{
-  height:60vh;
+  height:50vh;
   width:100vw;
   /* background-color: aqua; */
   display: flex;
@@ -49,4 +47,57 @@ h1{
 .inside{
   height:4vh;
   width:6vw;
+}
+
+@media all and (max-device-width: 480px) {
+  h1{
+    padding: 1vh 1vh;
+    background-color: cadetblue;
+  }
+  .First{
+    border: 1px solid black;
+    height: 14%;
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Tail{
+    border: 1px solid black;
+    height: 14%;
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    
+    .queue-holder{
+    height:40vh;
+    width:100vw;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: row;
+    /* align-content: center; */
+    justify-content: center;
+    /* align-content: flex-end; */
+    align-items: center;
+  }
+
+  .queue-box{
+    border: 1px solid black;
+    text-align: center;
+    height: 12%;
+    width: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .inside{
+    height:4vh;
+    width:6vw;
+  }
+  
 }

@@ -12,21 +12,33 @@ var new_array_divs=[];
 new_array_btn.addEventListener("click",createArray);
 Array_size.addEventListener("click",createArray);
 
+var mulsize=20;
+
+var mar=0.1
+
+function preprocess(){
+  if (window.matchMedia('(max-device-width: 960px)').matches) {
+    mulsize=8;
+    mar=0.3;
+  }
+  createArray();
+}
+
 
 var size;
 function createArray(){
-  size=Array_size.value*20;
+  size=Array_size.value*mulsize;
   array_div.innerHTML="";
   for(let i=0;i<size;i++){
     new_array_values[i]=Math.floor(((Math.random()*68)+1));
     new_array_divs[i]=document.createElement("div");
     array_div.appendChild(new_array_divs[i]);
-    new_array_divs[i].style=" margin:0% " + 0.1 + "%; background-color:aqua; width:" + (100/size-(2*0.1)) + "%; height:" + (new_array_values[i]) + "%;";
+    new_array_divs[i].style=" margin:0% " + mar + "%; background-color:aqua; width:" + (100/size-(2*0.1)) + "%; height:" + (new_array_values[i]) + "%;";
   }
 }
 
 
-window.onload=createArray();
+window.onload=preprocess();
 
 
 

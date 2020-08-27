@@ -7,6 +7,17 @@ var addBtn=document.querySelector(".addBtn");
 var resetBtn=document.querySelector(".resetBtn");
 
 
+
+var maxsize=12;
+
+function preprocess(){
+    if (window.matchMedia('(max-device-width: 960px)').matches) {
+        maxsize=9;
+    }
+    createQueue();
+}
+
+
 addBtn.addEventListener('click',addEleQueue);
 deleteBtn.addEventListener('click',deleteEleQueue);
 resetBtn.addEventListener('click',createQueue);
@@ -29,14 +40,14 @@ function createQueue(){
     rearele.innerHTML=-1;
     first.appendChild(firstele);
     Tail.appendChild(rearele);
-    for(let i=0;i<12;i++){
+    for(let i=0;i<maxsize;i++){
         queueDivs[i]=document.createElement("div");
         queueDivs[i].classList.add("queue-box");
         queueContainer.appendChild(queueDivs[i]);
     }
 }
 
-window.onload=createQueue();
+window.onload=preprocess();
 
 
 function addEleQueue(){
@@ -46,28 +57,8 @@ function addEleQueue(){
         alert(`${someval} must enter a number `);
         return;
     }
-    if(rear>=12){
-        alert(`Queue Overflow size of queue is 12 curr insertion place is ${rear}`);
-    }
-    else if(rear==-1 && front==-1){
-        
-       rear++;
-       front++;
-       let somediv1=document.createElement("div");
-        somediv1.classList.add(".inside");
-        first.innerHTML="";
-        somediv1.innerHTML=front;
-        first.appendChild(somediv1);
-       Tail.innerHTML="";
-       let rearon=document.createElement("div");
-       rearon.classList.add(".inside");
-       rearon.innerHTML=rear;
-       Tail.appendChild(rearon);
-       let value=parseInt(inputval.value);
-       let somediv=document.createElement("div");
-       somediv.classList.add(".inside");
-       somediv.innerHTML=value;
-       queueDivs[rear].appendChild(somediv);
+    if(rear>=maxsize-1){
+        alert(`Queue Overflow size of queue is ${maxsize} curr insertion place is ${rear+1}`);
     }
     else{
        rear++;
@@ -84,27 +75,20 @@ function addEleQueue(){
     }
 }
 
+
 function deleteEleQueue(){
-    if((front==-1 && rear==-1) ||(front==12 && rear==12)){
-        alert("Queue Overflow can't delete");
+    if(front>rear){
+        alert(`Queue Underflow size of queue is ${maxsize} curr deletion place is ${front}`);
     }
-    else if(front>rear){
-        alert(`Queue Underflow size of queue is 12 curr deletion place is ${front}`);
-    }
-    else if(front==rear){
-        queueDivs[front].innerHTML="";
+    if(front==rear){
+        alert('Queue underflow no elements to delete.');
+        front=-1;
+        rear=-1;
         let somediv=document.createElement("div");
         somediv.classList.add(".inside");
         first.innerHTML="";
         somediv.innerHTML=front;
         first.appendChild(somediv);
-        front=-1;
-        rear=-1;
-        let somediv1=document.createElement("div");
-        somediv1.classList.add(".inside");
-        first.innerHTML="";
-        somediv1.innerHTML=front;
-        first.appendChild(somediv1);
         let rearele1=document.createElement("div");
         rearele1.classList.add(".inside");
         rearele1.innerHTML=-1;
@@ -112,14 +96,12 @@ function deleteEleQueue(){
         Tail.appendChild(rearele1);
     }
     else{
-       
-        queueDivs[front].innerHTML="";
         front++;
         let somediv=document.createElement("div");
         somediv.classList.add(".inside");
         first.innerHTML="";
         somediv.innerHTML=front;
         first.appendChild(somediv);
-        
+        queueDivs[front].innerHTML="";
     }
 }
